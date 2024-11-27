@@ -59,8 +59,8 @@ def showImage(image):
             # TODO Mapping of color numbers to
             #      fancy ascii representation
             msg += str((image.imageIntern())[row][col])
-        print msg
-    raw_input("press Enter")
+        print(msg)
+    input("press Enter")
 
 
 def showImagePosition(image):
@@ -72,9 +72,9 @@ def showImagePosition(image):
       knitStartNeedle = image.knitStartNeedle()
       knitStopNeedle  = image.knitStopNeedle()
 
-      print "Image Start: ", imgStartNeedle
-      print "Image Stop : ", imgStopNeedle
-      print ""
+      print("Image Start: ", imgStartNeedle)
+      print("Image Stop : ", imgStopNeedle)
+      print("")
 
       # print markers for active area and knitted image
       msg = '|'
@@ -87,7 +87,7 @@ def showImagePosition(image):
           else:
               msg += '_'
       msg += '|'
-      print msg
+      print(msg)
 
       # print markers at multiples of 10
       msg = '|'
@@ -100,89 +100,89 @@ def showImagePosition(image):
               else:
                   msg += ' '
       msg += '|'
-      print msg
-      raw_input("press Enter")
+      print(msg)
+      input("press Enter")
 
 
 def resizeImage(image):
-  image.resizeImage(int(raw_input("New Width (pixel): ")))
+  image.resizeImage(int(input("New Width (pixel): ")))
 
 def setKnitNeedles(image):
   # TODO Change to Green/Orange 100-0-100 range
-  startNeedle = int(raw_input("Start Needle (0 <= x <= 198): "))
-  stopNeedle  = int(raw_input("Stop Needle  (1 <= x <= 199): "))
+  startNeedle = int(input("Start Needle (0 <= x <= 198): "))
+  stopNeedle  = int(input("Stop Needle  (1 <= x <= 199): "))
   image.setKnitNeedles(startNeedle,stopNeedle)
 
 def setImagePosition(image):
-  print "Allowed options:"
-  print ""
-  print "center"
-  print "left"
-  print "right"
-  print "<position from left>"
-  print ""
-  image.setImagePosition(raw_input("Image Position: "))
+  print("Allowed options:")
+  print("")
+  print("center")
+  print("left")
+  print("right")
+  print("<position from left>")
+  print("")
+  image.setImagePosition(input("Image Position: "))
 
 
 def setStartLine(image):
-  image.setStartLine(int(raw_input("Start Line: ")))
+  image.setStartLine(int(input("Start Line: ")))
 
 
 def mainCallback(pSource, pString, pType):
   if pType == "stream":
-    print pString
+    print(pString)
     return
 
   if pType == "error":
-    print "E: " + pString
+    print("E: " + pString)
   elif pType == "debug":
-    print "D: " + pString
+    print("D: " + pString)
   elif pType == "prompt":
-    print pString
+    print(pString)
 
-  raw_input("Press Enter")
+  input("Press Enter")
   return
 
 
 def print_main_menu(image):
     """Print the main menu"""
-    print "======================"
-    print "=    AYAB CONTROL    ="
-    print "======================"
-    print "Version: " + VERSION
-    print "Distributed under GPL"
-    print ""
-    print "IMAGE TOOLS"
-    print " 1 - show"
-    print " 2 - invert"
-    print " 3 - resize"
-    print " 4 - rotate"
-    print ""
-    print "KNITTING"
-    print " 5 - set start and stop needle"
-    print " 6 - set image position"
-    print " 7 - set start line"
-    print " 8 - show image position"
-    print ""
-    print " 9 - knit image with current settings"
-    print ""
-    print " 0 - Exit"
-    print ""
-    print "INFORMATION"
-    print "Machine Type  : ", options.machine_type
-    print "Colors        : ", options.num_colors
-    print "Filename      : ", image.filename()
-    print "Width         : ", image.imgWidth()
-    print "Height        : ", image.imgHeight()
-    print ""
-    print "Start Needle  : ", image.knitStartNeedle()
-    print "Stop Needle   : ", image.knitStopNeedle()
-    print "Start Line    : ", image.startLine()
-    print "Image position: ", image.imgPosition()
+    print("======================")
+    print("=    AYAB CONTROL    =")
+    print("======================")
+    print("Version: " + VERSION)
+    print("Distributed under GPL")
+    print("")
+    print("IMAGE TOOLS")
+    print(" 1 - show")
+    print(" 2 - invert")
+    print(" 3 - resize")
+    print(" 4 - rotate")
+    print("")
+    print("KNITTING")
+    print(" 5 - set start and stop needle")
+    print(" 6 - set image position")
+    print(" 7 - set start line")
+    print(" 8 - show image position")
+    print("")
+    print(" 9 - knit image with current settings")
+    print("")
+    print(" 0 - Exit")
+    print("")
+    print("INFORMATION")
+    print("Machine Type  : ", options.machine_type)
+    print("Colors        : ", options.num_colors)
+    print("Filename      : ", image.filename())
+    print("Width         : ", image.imgWidth())
+    print("Height        : ", image.imgHeight())
+    print("")
+    print("Start Needle  : ", image.knitStartNeedle())
+    print("Stop Needle   : ", image.knitStopNeedle())
+    print("Start Line    : ", image.startLine())
+    print("Image position: ", image.imgPosition())
 
 
 def no_such_action():
-    print "Please make a valid selection"
+    print("Please make a valid selection")
 
 
 def mainFunction(options):
@@ -192,7 +192,7 @@ def mainFunction(options):
       return "E: invalid machine type"
     if options.machine_type == 'single' \
           and options.num_colors != 2:
-      print "E: singlebed only supports 2 color knitting"
+      print("E: singlebed only supports 2 color knitting")
       return
 
 
@@ -216,9 +216,9 @@ def mainFunction(options):
         os.system('cls' if os.name=='nt' else 'clear')
 
         print_main_menu(image)
-        print ""
-        selection = raw_input("Your selection: ")
-        print ""
+        print("")
+        selection = input("Your selection: ")
+        print("")
         if "0" == selection:
             exit()
             return
@@ -259,11 +259,13 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args()
 
     if options.list:
-      print str(list(getSerialPorts()))
+      print(str(list(getSerialPorts())))
       sys.exit(0)
 
     if len(args):
       options.filename = args[0]
       mainFunction(options)
+    else:
+      print("usage: python3 ayab_commandline_libby.py image_filename")
 
     sys.exit(0)
