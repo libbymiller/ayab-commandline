@@ -28,7 +28,7 @@ from optparse import OptionParser
 import ayab_image
 import ayab_control
 
-VERSION = "1.2"
+VERSION = "1.3"
 
 def getSerialPorts():
   """
@@ -259,13 +259,13 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args()
 
     if options.list:
-      print(str(list(getSerialPorts())))
-      sys.exit(0)
+        print(str(list(getSerialPorts())))
+        sys.exit(0)
 
     if len(args):
-      options.filename = args[0]
-      mainFunction(options)
+        options.filename = args[0]
+        mainFunction(options)
     else:
-      print("usage: python3 ayab_commandline_libby.py image_filename")
+        parser.print_help()
 
     sys.exit(0)
